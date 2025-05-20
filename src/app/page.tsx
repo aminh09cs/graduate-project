@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { useRouter } from 'next/navigation';
 import Heart from '@/components/Heart';
@@ -11,6 +11,7 @@ export default function Home() {
   const emojiRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const [done, setDone] = useState(false);
 
   useEffect(() => {
     const progressBar = progressRef.current;
@@ -24,7 +25,7 @@ export default function Home() {
       duration: 5,
       ease: 'power2.inOut',
       onComplete: () => {
-        // router.push('/celebration');
+        setDone(true);
       }
     });
 
@@ -115,39 +116,55 @@ export default function Home() {
             </div>
 
             {/* Progress bar container */}
-            <div ref={containerRef} className="relative h-8 sm:h-10">
-              {/* Progress bar background */}
-              <div className="absolute inset-0 bg-white rounded-full shadow-lg border-2 border-pink-200 overflow-hidden">
-                {/* Progress bar */}
-                <div
-                  ref={progressRef}
-                  className="h-full w-0 bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 rounded-full"
-                />
+            {!done && (
+              <div ref={containerRef} className="relative h-8 sm:h-10">
+                {/* Progress bar background */}
+                <div className="absolute inset-0 bg-white rounded-full shadow-lg border-2 border-pink-200 overflow-hidden">
+                  {/* Progress bar */}
+                  <div
+                    ref={progressRef}
+                    className="h-full w-0 bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 rounded-full"
+                  />
+                </div>
+                {/* Emoji that moves with progress */}
+                <div 
+                  ref={emojiRef}
+                  className="absolute top-1/2 left-0 transform -translate-y-1/2 text-xl sm:text-2xl md:text-3xl"
+                  style={{ marginLeft: '-1.5rem' }}
+                >
+                  🎓
+                </div>
               </div>
-              
-              {/* Emoji that moves with progress */}
-              <div 
-                ref={emojiRef}
-                className="absolute top-1/2 left-0 transform -translate-y-1/2 text-xl sm:text-2xl md:text-3xl"
-                style={{ marginLeft: '-1.5rem' }}
-              >
-                🎓
+            )}
+            {/* Cute button xuất hiện khi xong */}
+            {done && (
+              <div className="flex flex-col items-center justify-center mt-8 animate-fade-in">
+                <button
+                  onClick={() => router.push('/celebration')}
+                  className="px-6 py-3 rounded-full bg-gradient-to-r from-pink-300 via-pink-400 to-purple-300 text-white text-xl shadow-lg border-2 border-pink-200 hover:scale-105 active:scale-95 transition-all duration-300 font-bold flex items-center gap-2 drop-shadow-lg"
+                  style={{ fontFamily: 'Pacifico, cursive', letterSpacing: 1 }}
+                >
+                  🎁 Nhận quà tốt nghiệp 💖
+                </button>
+                <span className="mt-2 text-pink-500 text-base animate-bounce">Bấm vào đây để nhận bất ngờ!</span>
               </div>
-            </div>
+            )}
           </div>
         </div>
 
         {/* Loading text with cute animation */}
-        <div className="mt-16 text-center">
-          <p className="text-base sm:text-lg md:text-xl text-purple-600 font-medium animate-pulse">
-            Đang chuẩn bị điều bất ngờ...
-          </p>
-          <div className="flex justify-center space-x-2 mt-4">
-            <span className="text-2xl animate-bounce" style={{ animationDelay: '0s' }}>✨</span>
-            <span className="text-2xl animate-bounce" style={{ animationDelay: '0.2s' }}>🎉</span>
-            <span className="text-2xl animate-bounce" style={{ animationDelay: '0.4s' }}>🎊</span>
+        {!done && (
+          <div className="mt-16 text-center">
+            <p className="text-base sm:text-lg md:text-xl text-purple-600 font-medium animate-pulse">
+              Đang chuẩn bị điều bất ngờ...
+            </p>
+            <div className="flex justify-center space-x-2 mt-4">
+              <span className="text-2xl animate-bounce" style={{ animationDelay: '0s' }}>✨</span>
+              <span className="text-2xl animate-bounce" style={{ animationDelay: '0.2s' }}>🎉</span>
+              <span className="text-2xl animate-bounce" style={{ animationDelay: '0.4s' }}>🎊</span>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );
