@@ -1,0 +1,21 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="petalGradient" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#ffd1dc"/>
+      <stop offset="70%" stop-color="#ff69b4"/>
+      <stop offset="100%" stop-color="#ff1493"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Rotate and position the flower in the center -->
+  <g transform="translate(100 100)">
+    <!-- Four circular petals -->
+    <circle cx="-30" cy="-30" r="35" fill="url(#petalGradient)" />
+    <circle cx="30" cy="-30" r="35" fill="url(#petalGradient)" />
+    <circle cx="-30" cy="30" r="35" fill="url(#petalGradient)" />
+    <circle cx="30" cy="30" r="35" fill="url(#petalGradient)" />
+    
+    <!-- Center of the flower -->
+    <circle r="15" fill="#ffef9f"/>
+  </g>
+</svg> 

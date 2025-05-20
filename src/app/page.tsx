@@ -35,43 +35,47 @@ export default function Home() {
       ease: 'power1.inOut'
     });
 
-    // Create flying hearts animation
-    const createHeart = () => {
-      const heart = document.createElement('div');
-      heart.innerHTML = '❤️';
-      heart.className = 'absolute text-xl sm:text-2xl md:text-3xl';
-      container.appendChild(heart);
+    // Create flying flowers animation
+    const createFlower = () => {
+      const flower = document.createElement('div');
+      flower.style.position = 'absolute';
+      flower.style.width = '30px';
+      flower.style.height = '30px';
+      flower.innerHTML = `<img src="/flower.svg" alt="flower" style="width: 100%; height: 100%;" />`;
+      container.appendChild(flower);
 
       const startY = Math.random() * 20 - 10; // Random vertical position
       const progressWidth = progressBar.offsetWidth;
       
       gsap.fromTo(
-        heart,
+        flower,
         {
           x: -50,
           y: startY,
           opacity: 0,
           scale: 0.5,
+          rotation: 0
         },
         {
           x: progressWidth,
           y: startY + (Math.random() * 20 - 10),
           opacity: 1,
           scale: 1,
+          rotation: 360,
           duration: 2 + Math.random(),
           ease: 'power1.inOut',
           onComplete: () => {
-            container.removeChild(heart);
+            container.removeChild(flower);
           },
         }
       );
     };
 
-    // Create hearts periodically
-    const heartInterval = setInterval(createHeart, 300);
+    // Create flowers periodically
+    const flowerInterval = setInterval(createFlower, 300);
 
     return () => {
-      clearInterval(heartInterval);
+      clearInterval(flowerInterval);
     };
   }, [router]);
 
@@ -83,7 +87,7 @@ export default function Home() {
           ☁️
         </div>
         
-        {/* Progress bar container with hearts */}
+        {/* Progress bar container with flowers */}
         <div ref={containerRef} className="relative h-8 sm:h-10">
           {/* Progress bar background */}
           <div className="absolute inset-0 bg-white rounded-full shadow-lg border-2 border-pink-200 overflow-hidden">
