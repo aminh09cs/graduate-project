@@ -1,13 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-
-const LEAF_IMAGES = [
-  '/leaf_1.png',
-  '/leaf_2.png',
-  '/leaf_3.png',
-  '/leaf_4.png',
-];
-
-const LEAF_COUNT = 18;
+import { LEAF_IMAGES, LEAF_COUNT } from '../constants/leaf';
 
 function randomBetween(a: number, b: number) {
   return Math.random() * (b - a) + a;
