@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 import { useRouter } from 'next/navigation';
 import Heart from '@/components/Heart';
 import LeafFallBackground from '@/components/LeafFallBackground';
+import BoxGift from './components/BoxGift';
 
 export default function Home() {
   const progressRef = useRef<HTMLDivElement>(null);
@@ -136,17 +137,9 @@ export default function Home() {
                 </div>
               </div>
             )}
-            {/* Cute button xuất hiện khi xong */}
             {done && (
-              <div className="flex flex-col items-center justify-center mt-8 animate-fade-in">
-                <button
-                  onClick={() => router.push('/celebration')}
-                  className="px-6 py-3 rounded-full bg-gradient-to-r from-pink-300 via-pink-400 to-purple-300 text-white text-xl shadow-lg border-2 border-pink-200 hover:scale-105 active:scale-95 transition-all duration-300 font-bold flex items-center gap-2 drop-shadow-lg"
-                  style={{ fontFamily: 'Pacifico, cursive', letterSpacing: 1 }}
-                >
-                  🎁 Nhận quà tốt nghiệp 💖
-                </button>
-                <span className="mt-2 text-pink-500 text-base animate-bounce">Bấm vào đây để nhận bất ngờ!</span>
+              <div className="relative flex flex-col items-center justify-center mt-8 animate-fade-in">
+                <BoxGift />
               </div>
             )}
           </div>

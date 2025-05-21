@@ -69,13 +69,6 @@ export default function CelebrationPage() {
     };
 
     createFireworks();
-
-    // Navigate away after 5 seconds
-    // const timeout = setTimeout(() => {
-    //   router.push('/');
-    // }, 5000);
-
-    // return () => clearTimeout(timeout);
   }, [router]);
 
   return (
