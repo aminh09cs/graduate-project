@@ -5,7 +5,7 @@ import { gsap } from 'gsap';
 import { useRouter } from 'next/navigation';
 import Heart from '@/components/Heart';
 import LeafFallBackground from '@/components/LeafFallBackground';
-import BoxGift from './components/BoxGift';
+import BoxGift2 from './components/BoxGift2';
 
 export default function Home() {
   const progressRef = useRef<HTMLDivElement>(null);
@@ -139,7 +139,7 @@ export default function Home() {
             )}
             {done && (
               <div className="relative flex flex-col items-center justify-center mt-8 animate-fade-in">
-                <BoxGift />
+                <BoxGift2 />
               </div>
             )}
           </div>

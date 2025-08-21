@@ -1,0 +1,21 @@
+.gift-box-container
+  .gift-box
+    .gift-box__side.gift-box__side--front
+    .gift-box__side.gift-box__side--back
+    .gift-box__side.gift-box__side--left
+    .gift-box__side.gift-box__side--right
+    .gift-box__end.gift-box__side--top
+    .gift-box__end.gift-box__side--bottom
+    
+    .gift-box-lid__side.gift-box-lid__side--front
+    .gift-box-lid__side.gift-box-lid__side--back
+    .gift-box-lid__side.gift-box-lid__side--left
+    .gift-box-lid__side.gift-box-lid__side--right
+    .gift-box-lid__end.gift-box-lid__side--top
+    
+    - for (var i = 0; i <= 40; i++)
+      .ribbon-l(style='--gift-box-position: ' + i + 'px; border-color: ' + ( i < 3 || i > 37 ? 'var(--gift-box-edge-color)' : 'var(--wrap-ribbon-color)'))
+    .ribbon-l-end
+    - for (var i = 0; i <= 40; i++)
+      .ribbon-r(style='--gift-box-position: ' + i + 'px; border-color: ' + ( i < 3 || i > 37 ? 'var(--gift-box-edge-color)' : 'var(--wrap-ribbon-color)'))
+    .ribbon-r-end
